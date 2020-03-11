@@ -17,13 +17,12 @@ How many circular primes are there below one million?\n")
    (recur (conj word-list (cycle-word (last word-list)))))))
 
 (defn cycle-prime? [prime]
- (word-cycles (str prime)))
+ (every? true? (map #(mprime/prime? (Integer. %)) (word-cycles (str prime)))))
  
 
 ; (defn below)
 (defn answer
  ([]
-  (answer 100))
+  (answer 1000000))
  ([n]
-  (filter (filter mprime/prime? (range 2 n)))
-  ))
+  (count (filter cycle-prime? (filter mprime/prime? (range 2 n))))))
