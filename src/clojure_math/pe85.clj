@@ -26,6 +26,8 @@ Although there exists no rectangular grid that contains exactly two million rect
  (reduce + (map #(fits gr gc (first %) (second %)) (sub-rects gr gc))))
 
 
+(defn sum-nums [end]
+ (* (+ end 1) (/ (second end) 2)))
 (defn sub-rect-count [gr gc]
  ; Grid Row Col
  (let [grc (sort [gr gc])]
