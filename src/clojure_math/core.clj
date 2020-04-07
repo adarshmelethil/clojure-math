@@ -6,7 +6,8 @@
    [clojure-math.pe50]
    [clojure-math.pe85]
    [clojure-math.pe76]
-   [clojure-math.pe18]))
+   [clojure-math.pe18]
+   [clojure-math.pe67]))
 
 
 (def pe_answers 
@@ -14,7 +15,7 @@
   (flatten (map 
    #(vector (str %) 
      (symbol (str "clojure-math.pe" %) "answer"))
-    [41 50 35 85 76 18]))))
+    [41 50 35 85 76 18 67]))))
  ; "41" (symbol (str pe
  ; "50" 'pe50))
 

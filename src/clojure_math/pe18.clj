@@ -1,4 +1,5 @@
-(ns clojure-math.pe18)
+(ns clojure-math.pe18
+ (:gen-class))
 
 (def problem
  "By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
@@ -65,7 +66,7 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
  (triangle-from-string large-triangle-string))
 
 (defn parent-index [idx size]
- (distinct 
+ (distinct
   (filter #(< % (dec size))
    (map #(if (< % 0) 0 %) [idx (dec idx)]))))
 
@@ -75,8 +76,8 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
   (map-indexed
    (fn [idx val] 
     (+ (apply max
-          (vals (select-keys (vec f) (parent-index idx (count s))))
-          ) val)) s)))
+        (vals (select-keys (vec f) [idx (dec idx)])))
+       val)) s)))
 
 (defn triangle-path [triangle]
  (let [[f & r] triangle]
