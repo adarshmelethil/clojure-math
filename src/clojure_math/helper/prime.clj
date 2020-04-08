@@ -7,7 +7,7 @@
   (= (mod n 2) 0) false
   :else (prime? n 3)))
  ([n p]
-  (cond 
+  (cond
    (> p (Math/sqrt n)) true
    (= (mod n p) 0) false
    :else (recur n (+ p 2)))))
@@ -24,3 +24,23 @@
    (recur
     (conj lps (first lnums))
     (remove-multiples (first lnums) lnums)))))
+
+(defn is-divisible-by? [num nums]
+ (loop [ns nums]
+  (let [other (first ns)]
+   (cond (nil? other)          false
+         (= (mod num other) 0) true
+         :else (recur (rest ns))))))
+
+(defn next-prime [primelist]
+ (loop [n (+ (last primelist) 2)]
+  (if (= n 4) 3
+   (if (is-divisible-by? n primelist)
+    (recur (+ n 2)) n))))
+
+(defn primes
+ ([] (primes [2]))
+ ([ps]
+  (lazy-seq
+   (cons (last ps) (primes (conj ps (next-prime ps)))))))
+
