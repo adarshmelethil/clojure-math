@@ -2,6 +2,11 @@
 
 (require '[clojure-math.helper.prime :as prime])
 
-(defn answer []
- (str (apply + (take 21 (filter #(prime/prime? %) (range)))) ))
+(defn run
+ ([]
+   (str (apply + (take 21 (filter #(prime/prime? %) (range)))) )))
+(defn answer [& args]
+ (println "50: " args)
+ (run)
+)
 

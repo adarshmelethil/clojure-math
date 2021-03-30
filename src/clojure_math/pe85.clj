@@ -38,12 +38,10 @@ Although there exists no rectangular grid that contains exactly two million rect
    (* (+ (* (sub-rect-count 1 (first grc)) (second grc)) (sub-rect-count 1 (first grc))) (/ (second grc) 2)))))
 (def sub-rect-count (memoize sub-rect-count))
 
-; (defn below)
-(defn answer
+(defn run
  ([]
-  (answer 2000000))
+  (run 2000000))
  ([n]
-  
   (let [n 30]
    (map 
     (fn [r] (println (clojure.string/join "\t" 
@@ -57,3 +55,7 @@ Although there exists no rectangular grid that contains exactly two million rect
   ; )))
   ; (sub-rect-count 2 2)
   ))
+(defn answer [& args]
+  (println "85: " args)
+  (run)
+  )

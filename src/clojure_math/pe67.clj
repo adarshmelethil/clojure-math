@@ -21,7 +21,10 @@ NOTE: This is a much more difficult version of Problem 18. It is not possible to
 (def triangle-string (slurp "./data/p067_triangle.txt"))
 (def triangle (clojure-math.pe18/triangle-from-string triangle-string))
 
-(defn answer
+(defn run
  ([]
   (time (clojure-math.pe18/triangle-path triangle))))
+
+(defn answer [& args]
+ (println "67: " args))
 

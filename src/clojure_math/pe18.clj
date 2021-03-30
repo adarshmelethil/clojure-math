@@ -85,6 +85,9 @@ NOTE: As there are only 16384 routes, it is possible to solve this problem by tr
    (apply max f)
    (recur (cons (tri-update f (first r)) (rest r))))))
 
-(defn answer
+(defn run
  ([]
   (triangle-path large-triangle)))
+(defn answer [& args]
+  (println "18: " args)
+  (run))

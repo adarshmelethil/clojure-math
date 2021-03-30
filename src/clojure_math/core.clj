@@ -8,26 +8,42 @@
    [clojure-math.pe76]
    [clojure-math.pe18]
    [clojure-math.pe67]
-   [clojure-math.pe4]))
+   [clojure-math.pe4]
+   [clojure-math.sorting]))
 
 
 (def pe_answers 
  (apply hash-map 
-  (flatten (map 
-   #(vector (str %) 
-     (symbol (str "clojure-math.pe" %) "answer"))
+  (flatten 
+   (map 
+    #(vector (str %) 
+      (symbol (str "clojure-math.pe" %) "answer"))
     [41 50 35 85 76 18 67 4]))))
- ; "41" (symbol (str pe
- ; "50" 'pe50))
+
+(defn num? [number-string]
+ (try
+  (Integer/parseInt number-string)
+  (catch Exception e nil)))
+
+(def non-euler 
+ (apply hash-map 
+  (flatten 
+   (map 
+    #(vector (str %) 
+      (symbol (str "clojure-math." %) "main"))
+    ["sorting"]))))
+
+(defn thisfunc []
+  (println "this"))
 
 (defn -main
   "Entry Point"
   [& args]
-   (let [problem_number (first args)]
-    (cond
-     (string? problem_number)
-     (let [ans_func (get pe_answers problem_number)]
-      (case ans_func
-       nil (println "Answer " problem_number " not found. Avalible answer:\n" (keys pe_answers))
-       (println (apply (resolve ans_func) []))))
-     :else (println "No number provided. Avalible answer:\n" (keys pe_answers)))))
+  (let [first-arg (first args)]
+   (cond
+    (contains? pe_answers first-arg)
+    (println  (apply (resolve (get pe_answers first-arg)) (rest args)) )
+    (contains? non-euler first-arg)
+    (println (apply (resolve (get non-euler first-arg)) (rest args)))
+    :else (println "Avalible args:\n" (keys pe_answers) "\n" (keys non-euler))
+    )))

@@ -64,10 +64,9 @@ How many different ways can one hundred be written as a sum of at least two posi
 (defn series-diff [series]
  (map - (rest series) (take (- (count series) 1) series)))
 
-
-(defn answer
+(defn run
  ([]
-  (answer 20))
+  (run 20))
  ([n]
   ; (take-n [] [2 2 2 3] 2)
   ; (let [n (map counting-summations (range 2 20))]
@@ -82,4 +81,8 @@ How many different ways can one hundred be written as a sum of at least two posi
   ; (sums-without-one 9)
   (time (counting-summations n))
   ))
+(defn answer [& args]
+  (println "76: " args)
+  (run)
+ )
 

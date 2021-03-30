@@ -24,11 +24,14 @@
 
 (defn list-to-num [ll] (reduce #(+ (* %1 10) %2) ll))
 
-(defn answer
+(defn run
  ([]
-  (answer 10))
+  (run 10))
  ([n]
   (let [ans (first (filter #(prime/prime? (list-to-num %)) (combinations (range 1 n))))]
    (if (nil? ans)
     (recur (- n 1))
     (list-to-num ans)))))
+(defn answer [& args]
+  (println "41: " args)
+  (run))
